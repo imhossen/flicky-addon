@@ -62,7 +62,7 @@ class Cards extends \Elementor\Widget_Base {
 	 * @return array Widget categories.
 	 */
 	public function get_categories() {
-		return [ 'general' ];
+		return [ 'flicky-category' ];
 	}
 
 	/**

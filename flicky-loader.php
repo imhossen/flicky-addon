@@ -38,7 +38,7 @@ final class Flicky_Addon {
 	 * @access private
 	 * @static
 	 *
-	 * @var Elementor_Picchi_Extension The single instance of the class.
+	 * @var Flicky_Addon The single instance of the class.
 	 */
 	private static $_instance = null;
 
@@ -52,7 +52,7 @@ final class Flicky_Addon {
 	 * @access public
 	 * @static
 	 *
-	 * @return Elementor_Picchi_Extension An instance of the class.
+	 * @return Flicky_Addon An instance of the class.
 	 */
 	public static function instance() {
 
@@ -157,7 +157,7 @@ final class Flicky_Addon {
 		$message = sprintf(
 			/* translators: 1: Plugin name 2: Elementor */
 			esc_html__( '"%1$s" requires "%2$s" to be installed and activated.', 'flicky-addon' ),
-			'<strong>' . esc_html__( 'Picchi Elementor Extension', 'flicky-addon' ) . '</strong>',
+			'<strong>' . esc_html__( 'Flicky Addon', 'flicky-addon' ) . '</strong>',
 			'<strong>' . esc_html__( 'Elementor', 'flicky-addon' ) . '</strong>'
 		);
 
@@ -181,7 +181,7 @@ final class Flicky_Addon {
 		$message = sprintf(
 			/* translators: 1: Plugin name 2: Elementor 3: Required Elementor version */
 			esc_html__( '"%1$s" requires "%2$s" version %3$s or greater.', 'flicky-addon' ),
-			'<strong>' . esc_html__( 'Picchi Elementor Extension', 'flicky-addon' ) . '</strong>',
+			'<strong>' . esc_html__( 'Flicky Addon', 'flicky-addon' ) . '</strong>',
 			'<strong>' . esc_html__( 'Elementor', 'flicky-addon' ) . '</strong>',
 			 self::MINIMUM_ELEMENTOR_VERSION
 		);
@@ -206,7 +206,7 @@ final class Flicky_Addon {
 		$message = sprintf(
 			/* translators: 1: Plugin name 2: PHP 3: Required PHP version */
 			esc_html__( '"%1$s" requires "%2$s" version %3$s or greater.', 'flicky-addon' ),
-			'<strong>' . esc_html__( 'Picchi Elementor Extension', 'flicky-addon' ) . '</strong>',
+			'<strong>' . esc_html__( 'Flicky Addon', 'flicky-addon' ) . '</strong>',
 			'<strong>' . esc_html__( 'PHP', 'flicky-addon' ) . '</strong>',
 			 self::MINIMUM_PHP_VERSION
 		);
@@ -227,8 +227,10 @@ final class Flicky_Addon {
 	public function init_widgets() {
 
 		require_once( __DIR__ . '/widgets/cards-widget.php' );
+		require_once( __DIR__ . '/widgets/counter-widget.php' );
 		
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \Cards() );
+		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \Counter_Widget() );
 		
 
 	}
@@ -262,11 +264,15 @@ final class Flicky_Addon {
         // Common CSS
         wp_enqueue_style('bootstrap-v3', 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css', array(), '3.3.5' );
          wp_enqueue_style('font-awesome');
-
+		 wp_register_style( 'plugin-font', plugins_url( 'https://fonts.googleapis.com/css?family=Poppins:400,400i,500,600,700|Ubuntu:400,500,700&display=swap', __FILE__ ) );
+		 
         // Cards Widget CSS
         
         wp_enqueue_style('material-cards-css', plugins_url( 'css/material-cards.css', __FILE__ ), array(), '1.0.0' );
-		
+
+		// Counter CSS
+
+		wp_enqueue_style('counter-css', plugins_url( 'css/counter.css', __FILE__ ), array(), '1.0.0' );
 
 	}	
 
@@ -274,9 +280,13 @@ final class Flicky_Addon {
 	public function widget_scripts() {
         // Common JS
         wp_enqueue_script('jquery');
+		wp_enqueue_script('main-js', plugins_url( 'js/main.js', __FILE__ ), array('jquery'), '1.0.0' );
         
         // Card JS
         wp_enqueue_script('material-cards-js', plugins_url( 'js/jquery.material-cards.min.js', __FILE__ ), array('jquery'), '1.0.0' );
+		 // Counter JS
+		 wp_enqueue_script('counterup-js', plugins_url( 'js/counterup.min.js', __FILE__ ), array('jquery'), '1.0.0' );
+		 wp_enqueue_script('waypoint-js', plugins_url( 'js/waypoint.min.js', __FILE__ ), array('jquery'), '1.0.0' );
 
 	}
 
