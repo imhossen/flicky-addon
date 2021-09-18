@@ -197,7 +197,6 @@ class Counter_Widget extends \Elementor\Widget_Base {
 				'label' => __( 'Typography', 'plugin-domain' ),
 				'scheme' => \Elementor\Core\Schemes\Typography::TYPOGRAPHY_1,
 				'selector' => '{{WRAPPER}} .counter-title h2',
-                'default' => "'Ubuntu', Sans-serif"
 			]
         );
         
@@ -232,7 +231,7 @@ class Counter_Widget extends \Elementor\Widget_Base {
 
 		// Counter Icon
 		$this->add_control(
-			'counter_icon',
+			'counter_icon_style_sec',
 			[
 				'label' => __( 'Icon', 'flicky-addon' ),
                 'type' => \Elementor\Controls_Manager::HEADING,
@@ -252,7 +251,7 @@ class Counter_Widget extends \Elementor\Widget_Base {
                 ],
                 'default' => 'rebeccapurple',
 				'selectors' => [
-					'{{WRAPPER}} .single-counter i' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .single-counter .counter-icon i' => 'color: {{VALUE}}',
 				]
 			]
         );	
@@ -281,17 +280,17 @@ class Counter_Widget extends \Elementor\Widget_Base {
 				'size_units' => [ 'px' ],
 				'range' => [
 					'px' => [
-						'min' => 90,
+						'min' => 40,
 						'max' => 90,
 						'step' => 5,
 					]
 				],
 				'default' => [
 					'unit' => 'px',
-					'size' => 90,
+					'size' => 40,
 				],
 				'selectors' => [
-					'{{WRAPPER}} .single-counter i' => 'font-size: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .single-counter .counter-icon i' => 'font-size: {{SIZE}}{{UNIT}};',
 				],
 			]
 		);
@@ -303,7 +302,7 @@ class Counter_Widget extends \Elementor\Widget_Base {
 				'type' => \Elementor\Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px' ],
 				'selectors' => [
-					'{{WRAPPER}} .single-counter i' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .single-counter .counter-icon i' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
