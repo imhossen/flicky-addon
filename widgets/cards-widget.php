@@ -48,7 +48,7 @@ class Cards extends \Elementor\Widget_Base {
 	 * @return string Widget icon.
 	 */
 	public function get_icon() {
-		return 'fa fa-address-card';
+		return 'eicon-menu-card';
 	}
 
 	/**

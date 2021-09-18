@@ -94,7 +94,19 @@ class Counter_Widget extends \Elementor\Widget_Base {
 			]
 		);
 
-		
+		$this->add_control(
+            'columns',
+            [
+                'label' => __( 'Columns', 'plugin-domain' ),
+                'type' => \Elementor\Controls_Manager::SELECT,
+                'default' => '4',
+                'options' => [
+                    '2' => __( '2 Columns', 'plugin-domain' ),
+                    '3' => __( '3 Columns', 'plugin-domain' ),
+                    '4' => __( '4 Columns', 'plugin-domain' ),
+                ],
+            ]
+        );
 
 		$repeater = new \Elementor\Repeater();
 
@@ -319,11 +331,20 @@ class Counter_Widget extends \Elementor\Widget_Base {
         </div>
 
 <?php
-		
+		if ($settings['columns'] == '3') {
+			$column = 'col-md-4';
+		}else if($settings['columns'] == '2') {
+			$column = 'col-md-6';
+		}
+		else{
+			$column = 'col-md-3';
+		}
 		if ( $settings['counter_lists'] ) {
+			
 			foreach (  $settings['counter_lists'] as $item ) {
+				
 				?>
-				<div class="col-md-3">
+				<div class="<?php echo $column;?>">
 					<div class="single-counter text-center">
 						<div class="counter-icon"><i class="<?php echo $item['counter_list_icon']['value']; ?>"></i></div>
 						<h2 class="counter"><?php echo $item['counter_list_number']; ?></h2>

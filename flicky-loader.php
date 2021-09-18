@@ -228,9 +228,11 @@ final class Flicky_Addon {
 
 		require_once( __DIR__ . '/widgets/cards-widget.php' );
 		require_once( __DIR__ . '/widgets/counter-widget.php' );
+		require_once( __DIR__ . '/widgets/slider-widget.php' );
 		
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \Cards() );
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \Counter_Widget() );
+		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \Flicky_Slider_Widget() );
 		
 
 	}
@@ -263,8 +265,10 @@ final class Flicky_Addon {
 
         // Common CSS
         wp_enqueue_style('bootstrap-v3', 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css', array(), '3.3.5' );
+		wp_enqueue_style('slick-css', 'https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css', array(), '1.8.1' );
          wp_enqueue_style('font-awesome');
-		 wp_register_style( 'plugin-font', plugins_url( 'https://fonts.googleapis.com/css?family=Poppins:400,400i,500,600,700|Ubuntu:400,500,700&display=swap', __FILE__ ) );
+		 wp_register_style( 'plugin-font', 'https://fonts.googleapis.com/css?family=Poppins:400,400i,500,600,700|Ubuntu:400,500,700&display=swap', __FILE__ );
+		 wp_enqueue_style('slick-css', plugins_url( 'css/slick.css', __FILE__ ), array(), '1.0.0' );
 		 
         // Cards Widget CSS
         
@@ -272,7 +276,13 @@ final class Flicky_Addon {
 
 		// Counter CSS
 
-		wp_enqueue_style('counter-css', plugins_url( 'css/counter.css', __FILE__ ), array(), '1.0.0' );
+		wp_enqueue_style('countr-css', plugins_url( 'css/counter.css', __FILE__ ), array(), '1.0.0' );
+
+		// Slider CSS
+
+		wp_enqueue_style('slider-css', plugins_url( 'css/slider.css', __FILE__ ), array(), '1.0.0' );
+
+		
 
 	}	
 
@@ -287,6 +297,11 @@ final class Flicky_Addon {
 		 // Counter JS
 		 wp_enqueue_script('counterup-js', plugins_url( 'js/counterup.min.js', __FILE__ ), array('jquery'), '1.0.0' );
 		 wp_enqueue_script('waypoint-js', plugins_url( 'js/waypoint.min.js', __FILE__ ), array('jquery'), '1.0.0' );
+
+		 // Slider
+		 wp_enqueue_script('slick-js', plugins_url( 'js/slick.min.js', __FILE__ ), array('jquery'), '1.0.0' );
+
+		 
 
 	}
 
