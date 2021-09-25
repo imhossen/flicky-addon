@@ -1235,6 +1235,7 @@
 }
 .material-card.Blue-Grey .mc-footer a {
   background-color: #263238;
+  border-radius: 30px !important;
 }
 .material-card.Blue-Grey.mc-active .mc-content {
   background-color: #eceff1;
@@ -1248,4 +1249,7 @@
 img.img-responsive {
   width: 100%;
   height: 100%;
+}
+.mc-footer a {
+  border-radius: 30px;
 }

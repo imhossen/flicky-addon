@@ -229,6 +229,8 @@ final class Flicky_Addon {
 		require_once( __DIR__ . '/widgets/cards-widget.php' );
 		require_once( __DIR__ . '/widgets/counter-widget.php' );
 		require_once( __DIR__ . '/widgets/slider-widget.php' );
+		require_once( __DIR__ . '/widgets/preview-card-widget.php' );
+		require_once( __DIR__ . '/widgets/pricing-table-widget.php' );
 		
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \Cards() );
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \Counter_Widget() );
